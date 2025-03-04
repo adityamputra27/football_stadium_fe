@@ -1,6 +1,8 @@
-import { type MetaFunction } from "@remix-run/node";
-import { useNavigate } from "@remix-run/react";
+import { LoaderFunction, type MetaFunction } from "@remix-run/node";
+import { useLoaderData, useNavigate } from "@remix-run/react";
 import { useEffect } from "react";
+import { currentUser } from "~/services/auth";
+import { authCookie } from "~/utils/session";
 
 export const meta: MetaFunction = () => {
   return [
@@ -9,16 +11,32 @@ export const meta: MetaFunction = () => {
   ];
 };
 
+export const loader: LoaderFunction = async ({ request }) => {
+  const token = await authCookie.parse(request.headers.get("Cookie"));
+
+  if (!token) {
+    return Response.json({ isAuthenticated: false });
+  }
+
+  try {
+    await currentUser(token);
+    return Response.json({ isAuthenticated: true });
+  } catch (error) {
+    return Response.json({ isAuthenticated: false });
+  }
+};
+
 export default function Index() {
+  const { isAuthenticated } = useLoaderData<{ isAuthenticated: boolean }>();
   const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate("/login");
-    }, 1500);
+      navigate(isAuthenticated ? "/home" : "login");
+    }, 2000);
 
     return () => clearTimeout(timer);
-  }, [navigate]);
+  }, [navigate, isAuthenticated]);
 
   return (
     <div className="flex h-screen items-center justify-center">
