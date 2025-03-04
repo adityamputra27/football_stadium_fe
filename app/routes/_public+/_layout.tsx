@@ -2,12 +2,15 @@ import { Outlet } from "@remix-run/react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FiBell, FiList, FiLogOut, FiUsers } from "react-icons/fi";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/ReactToastify.css";
 
 function Layout() {
   const [dropdownOpen, isDropdownOpen] = useState(false);
 
   return (
     <React.Fragment>
+      <ToastContainer position="top-right" autoClose={2000} />
       <header>
         <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
           <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -122,7 +125,7 @@ function Layout() {
                 </li>
                 <li>
                   <Link
-                    to="#"
+                    to="/notifications"
                     className="flex items-center justify-center gap-1 py-2 px-3 text-sm text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                   >
                     <FiBell /> Notifications
