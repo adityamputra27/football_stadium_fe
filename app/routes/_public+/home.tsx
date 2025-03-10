@@ -1,9 +1,16 @@
-import { LoaderFunction } from "@remix-run/node";
+import { LoaderFunction, MetaFunction } from "@remix-run/node";
 import { redirect, useLoaderData, useSearchParams } from "@remix-run/react";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { currentUser } from "~/services/auth";
 import { authCookie } from "~/utils/session";
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Football Stadium App | Home" },
+    { name: "description", content: "Home" },
+  ];
+};
 
 export const loader: LoaderFunction = async ({ request }) => {
   const token = await authCookie.parse(request.headers.get("Cookie"));
@@ -36,9 +43,13 @@ function Home() {
       toast.success("Successfully login! 🎉");
       setSearchParams({}, { replace: true });
     }
-  }, []);
+  }, [setSearchParams, success]);
 
-  return <div>{user?.name}</div>;
+  return (
+    <div>
+      {user?.name} - {user?.email}
+    </div>
+  );
 }
 
 export default Home;

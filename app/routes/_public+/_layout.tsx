@@ -15,14 +15,10 @@ function Layout() {
         <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
           <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <Link
-              to="#"
+              to="/"
               className="flex items-center space-x-3 rtl:space-x-reverse"
             >
-              <img
-                src="/logo-primary.png"
-                className="h-8"
-                alt="Flowbite Logo"
-              />
+              <img src="/logo-primary.png" className="h-8" alt="Logo" />
             </Link>
             <button
               data-collapse-toggle="navbar-dropdown"
@@ -55,7 +51,7 @@ function Layout() {
               <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                 <li>
                   <Link
-                    to="#"
+                    to="/home"
                     className="block py-2 px-3 text-sm text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent"
                     aria-current="page"
                   >
@@ -101,7 +97,7 @@ function Layout() {
                           to="#"
                           className="flex items-center justify-start gap-1 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                         >
-                          <FiList /> Leagues list
+                          <FiList /> League list
                         </Link>
                       </li>
                       <li>
@@ -109,7 +105,7 @@ function Layout() {
                           to="#"
                           className="flex items-center justify-start gap-1 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                         >
-                          <FiList /> Clubs list
+                          <FiList /> Club list
                         </Link>
                       </li>
                       <li>
@@ -155,11 +151,6 @@ function Layout() {
       <main className="max-w-screen-xl flex flex-wrap items-center mx-auto p-4">
         <Outlet />
       </main>
-      <footer>
-        <p className="text-center text-xs">
-          Copyright @ Football Stadium {new Date().getFullYear()}
-        </p>
-      </footer>
     </React.Fragment>
   );
 }

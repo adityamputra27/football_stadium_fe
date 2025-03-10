@@ -7,10 +7,9 @@ import {
   useSearchParams,
 } from "@remix-run/react";
 import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { loginUser } from "~/services/auth";
 import { authCookie } from "~/utils/session";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 
 export const meta: MetaFunction = () => {

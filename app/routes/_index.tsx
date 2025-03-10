@@ -33,7 +33,7 @@ export default function Index() {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate(isAuthenticated ? "/home" : "login");
-    }, 2000);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, [navigate, isAuthenticated]);
