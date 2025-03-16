@@ -94,7 +94,7 @@ function Layout() {
                     >
                       <li>
                         <Link
-                          to="#"
+                          to="leagues"
                           className="flex items-center justify-start gap-1 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                         >
                           <FiList /> League list
