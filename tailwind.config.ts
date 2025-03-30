@@ -18,5 +18,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [require("flowbite-typography")],
 } satisfies Config;

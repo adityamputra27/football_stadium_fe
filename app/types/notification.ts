@@ -16,5 +16,6 @@ export interface Notification {
   description: string;
   status: "success" | "error" | "info";
   category: NotificationCategory;
+  send_push: boolean;
   created_at: string;
 }

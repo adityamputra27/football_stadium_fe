@@ -22,6 +22,7 @@ export default function Modal(props: ModalNotificationProps) {
     category: undefined,
     description: "",
     status: "success",
+    send_push: true,
   });
   const [loading, setLoading] = useState(false);
 
@@ -69,6 +70,7 @@ export default function Modal(props: ModalNotificationProps) {
         category: selectedNotification?.category,
         description: selectedNotification?.description,
         status: "success",
+        send_push: selectedNotification?.send_push,
       });
     } else {
       setFormData({
@@ -76,9 +78,10 @@ export default function Modal(props: ModalNotificationProps) {
         category: undefined,
         description: "",
         status: "success",
+        send_push: true,
       });
     }
-  }, [selectedNotification]);
+  }, [selectedNotification, openModal, setOpenModal]);
 
   return (
     <div
@@ -137,6 +140,7 @@ export default function Modal(props: ModalNotificationProps) {
                   required={true}
                   value={formData.title}
                   onChange={handleInputChange}
+                  defaultChecked
                 />
               </div>
               <div className="col-span-2">
@@ -153,13 +157,63 @@ export default function Modal(props: ModalNotificationProps) {
                   onChange={handleInputChange}
                   name="category"
                 >
-                  <option selected={false}>-</option>
+                  <option selected={formData.category == undefined}>-</option>
                   {notificationCategoryConstant.map((category) => (
                     <option key={category} value={category}>
                       {category}
                     </option>
                   ))}
                 </select>
+              </div>
+              <div className="col-span-2">
+                <label
+                  htmlFor="send_push"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Push Notification
+                </label>
+                <div className="grid grid-cols-6 gap-2">
+                  <div className="col-span-3">
+                    <input
+                      id="send_push_true"
+                      type="radio"
+                      name="send_push"
+                      value="true"
+                      onChange={handleInputChange}
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label
+                      htmlFor="send_push_true"
+                      className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >
+                      Yes
+                      <p className="text-xs text-gray-400">
+                        this action will push or sending notification to all
+                        device or users
+                      </p>
+                    </label>
+                  </div>
+                  <div className="col-span-3">
+                    <input
+                      id="send_push_false"
+                      type="radio"
+                      value="false"
+                      name="send_push"
+                      onChange={handleInputChange}
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label
+                      htmlFor="send_push_false"
+                      className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >
+                      No
+                      <p className="text-xs text-gray-400">
+                        this action will not push or sending notification to
+                        users
+                      </p>
+                    </label>
+                  </div>
+                </div>
               </div>
               <div className="col-span-2">
                 <label

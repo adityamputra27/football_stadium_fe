@@ -95,25 +95,28 @@ function Layout() {
                       <li>
                         <Link
                           to="leagues"
+                          onClick={() => isDropdownOpen(false)}
                           className="flex items-center justify-start gap-1 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                         >
-                          <FiList /> League list
+                          <FiList /> Football League
                         </Link>
                       </li>
                       <li>
                         <Link
-                          to="#"
+                          to="clubs"
+                          onClick={() => isDropdownOpen(false)}
                           className="flex items-center justify-start gap-1 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                         >
-                          <FiList /> Club list
+                          <FiList /> Football Club
                         </Link>
                       </li>
                       <li>
                         <Link
-                          to="#"
+                          to="stadiums"
+                          onClick={() => isDropdownOpen(false)}
                           className="flex items-center justify-start gap-1 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                         >
-                          <FiList /> Stadium list
+                          <FiList /> Football Stadium
                         </Link>
                       </li>
                     </ul>

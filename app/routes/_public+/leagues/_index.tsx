@@ -76,7 +76,7 @@ export default function Index() {
   return (
     <React.Fragment>
       <div className="mb-2">
-        <h3 className="text-xl font-bold">List of Football Leagues</h3>
+        <h3 className="text-xl font-bold">Football Leagues</h3>
         <p className="text-xs text-gray-400 mt-1">
           Total : {footballLeagues.length} data, Count filtered :{" "}
           {footballLeagues.length} data, Page 1
