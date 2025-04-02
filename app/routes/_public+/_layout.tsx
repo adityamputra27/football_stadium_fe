@@ -1,9 +1,12 @@
 import { Outlet } from "@remix-run/react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FiBell, FiList, FiLogOut, FiUsers } from "react-icons/fi";
+import { FiBell, FiLogOut, FiUsers } from "react-icons/fi";
+import { MdOutlineStadium } from "react-icons/md";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
+import { SiPremierleague } from "react-icons/si";
+import { BiFootball } from "react-icons/bi";
 
 function Layout() {
   const [dropdownOpen, isDropdownOpen] = useState(false);
@@ -52,7 +55,7 @@ function Layout() {
                 <li>
                   <Link
                     to="/home"
-                    className="block py-2 px-3 text-sm text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent"
+                    className="block py-2 px-3 text-sm text-white bg-blue-700 md:dark:hover:text-blue-500 rounded-sm md:bg-transparent md:p-0 md:dark:bg-transparent"
                     aria-current="page"
                   >
                     Home
@@ -94,29 +97,29 @@ function Layout() {
                     >
                       <li>
                         <Link
-                          to="leagues"
+                          to="football-leagues"
                           onClick={() => isDropdownOpen(false)}
                           className="flex items-center justify-start gap-1 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                         >
-                          <FiList /> Football League
+                          <SiPremierleague /> Football League
                         </Link>
                       </li>
                       <li>
                         <Link
-                          to="clubs"
+                          to="football-clubs"
                           onClick={() => isDropdownOpen(false)}
                           className="flex items-center justify-start gap-1 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                         >
-                          <FiList /> Football Club
+                          <BiFootball /> Football Club
                         </Link>
                       </li>
                       <li>
                         <Link
-                          to="stadiums"
+                          to="football-stadiums"
                           onClick={() => isDropdownOpen(false)}
                           className="flex items-center justify-start gap-1 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                         >
-                          <FiList /> Football Stadium
+                          <MdOutlineStadium /> Football Stadium
                         </Link>
                       </li>
                     </ul>

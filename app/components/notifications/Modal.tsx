@@ -70,7 +70,7 @@ export default function Modal(props: ModalNotificationProps) {
         category: selectedNotification?.category,
         description: selectedNotification?.description,
         status: "success",
-        send_push: selectedNotification?.send_push,
+        send_push: selectedNotification?.send_push ?? true,
       });
     } else {
       setFormData({
@@ -179,7 +179,13 @@ export default function Modal(props: ModalNotificationProps) {
                       type="radio"
                       name="send_push"
                       value="true"
-                      onChange={handleInputChange}
+                      checked={formData.send_push === true}
+                      onChange={() =>
+                        setFormData({
+                          ...formData,
+                          send_push: true,
+                        })
+                      }
                       className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                     />
                     <label
@@ -199,7 +205,13 @@ export default function Modal(props: ModalNotificationProps) {
                       type="radio"
                       value="false"
                       name="send_push"
-                      onChange={handleInputChange}
+                      checked={formData.send_push === false}
+                      onChange={() =>
+                        setFormData({
+                          ...formData,
+                          send_push: false,
+                        })
+                      }
                       className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                     />
                     <label

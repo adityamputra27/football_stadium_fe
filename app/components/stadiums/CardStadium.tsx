@@ -7,6 +7,7 @@ import {
   FiInfo,
   FiMoreVertical,
   FiTrash2,
+  FiX,
 } from "react-icons/fi";
 import { FootballStadium } from "~/types/stadium";
 
@@ -23,7 +24,7 @@ export default function CardStadium(props: CardStadiumProps) {
 
   return (
     <React.Fragment>
-      <div className="cursor-pointer rounded-xl w-full mb-3 p-3 max-h-52 overflow-hidden bg-white border hover:border-[#588AE4] hover:border-2 border-gray-800 shadow-sm dark:bg-gray-900 dark:border-gray-700">
+      <div className="cursor-pointer rounded-xl w-full mb-3 p-3 max-h-52 overflow-hidden bg-white border hover:border-[#588AE4] hover:border-1 border-gray-800 shadow-sm dark:bg-gray-900 dark:border-gray-700">
         <div className="flex justify-between items-start mb-3">
           <img
             src={
@@ -31,7 +32,7 @@ export default function CardStadium(props: CardStadiumProps) {
                 ? footballStadium.latest_file
                 : "https://dpcpa.com/app/uploads/2015/01/thumbnail-default.jpg"
             }
-            className="w-full h-32 object-cover object-center rounded-lg"
+            className="h-32 rounded-lg"
             alt=""
           />
         </div>
@@ -65,7 +66,7 @@ export default function CardStadium(props: CardStadiumProps) {
                     handleEdit(footballStadium);
                     isDropdownOpen(false);
                   }}
-                  className="w-full flex items-center justify-start gap-1 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  className="w-full flex items-center justify-start text-xs gap-1 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                 >
                   <FiEdit /> Edit
                 </button>
@@ -79,16 +80,16 @@ export default function CardStadium(props: CardStadiumProps) {
                     }
                     isDropdownOpen(false);
                   }}
-                  className="w-full flex items-center justify-start gap-1 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  className="w-full flex items-center justify-start text-xs gap-1 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                 >
                   <FiImage /> Picture
                 </button>
               </li>
               <li>
                 <Link
-                  to={`/stadiums/${footballStadium.id}/editor`}
+                  to={`/football-stadiums/${footballStadium.id}/editor`}
                   onClick={() => isDropdownOpen(false)}
-                  className="w-full flex items-center justify-start gap-1 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  className="w-full flex items-center justify-start text-xs gap-1 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                 >
                   <FiInfo /> Content
                 </Link>
@@ -100,9 +101,18 @@ export default function CardStadium(props: CardStadiumProps) {
                     handleDelete(footballStadium.id);
                     isDropdownOpen(false);
                   }}
-                  className="w-full flex items-center justify-start gap-1 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  className="w-full flex items-center justify-start text-xs gap-1 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                 >
                   <FiTrash2 /> Delete
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => isDropdownOpen(false)}
+                  className="w-full flex items-center justify-start text-xs gap-1 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >
+                  <FiX /> Close
                 </button>
               </li>
             </ul>

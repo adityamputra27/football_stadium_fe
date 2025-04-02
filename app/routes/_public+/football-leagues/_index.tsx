@@ -1,18 +1,36 @@
 /* eslint-disable import/no-unresolved */
-import { MetaFunction } from "@remix-run/node";
+import { LoaderFunction, MetaFunction } from "@remix-run/node";
+import { redirect } from "@remix-run/react";
 // import { Link } from "@remix-run/react";
 import React, { useCallback, useEffect, useState } from "react";
 import { FiFilter, FiPlusCircle } from "react-icons/fi";
 import { toast } from "react-toastify";
 import ConfirmModal from "~/components/ConfirmModal";
-import CardLeague from "~/components/leagues/CardLeague";
-import CardLeagueLoading from "~/components/leagues/CardLeagueLoading";
-import Modal from "~/components/leagues/Modal";
+import CardLeague from "~/components/football-leagues/CardLeague";
+import CardLeagueLoading from "~/components/football-leagues/CardLeagueLoading";
+import Modal from "~/components/football-leagues/Modal";
+import { currentUser } from "~/services/auth";
 import {
   deleteFootballLeague,
   initiateFootballLeagues,
 } from "~/services/league";
 import { FootballLeague } from "~/types/league";
+import { authCookie } from "~/utils/session";
+
+export const loader: LoaderFunction = async ({ request }) => {
+  const token = await authCookie.parse(request.headers.get("Cookie"));
+
+  if (!token) {
+    return redirect("/login");
+  }
+
+  try {
+    const user = await currentUser(token);
+    return Response.json({ user });
+  } catch (error) {
+    return redirect("/login");
+  }
+};
 
 export const meta: MetaFunction = () => {
   return [
