@@ -128,7 +128,7 @@ export default function Index() {
       <div className="w-full">
         {loading ? (
           <div className="grid grid-cols-7 gap-4">
-            {Array.from({ length: 7 * 2 }).map((_, index) => (
+            {Array.from({ length: 7 * 3 }).map((_, index) => (
               <CardLeagueLoading key={index} />
             ))}
           </div>

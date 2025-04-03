@@ -20,12 +20,17 @@ export default function CardClub(props: CardClubProps) {
           <div className="flex justify-between items-start mb-3">
             <img
               src={footballClub.logo_white}
-              className="h-16 mx-auto rounded-lg"
+              className="h-16 mx-auto rounded-lg px-1"
               alt=""
             />
           </div>
-          <div className="flex justify-center items-center text-center text-xs text-gray-300 pt-0 pb-0.5">
-            <span>{footballClub.name}</span>
+          <div className="flex justify-center items-center text-center text-xs text-gray-300 pt-0 pb-0.5 text-ellipsis overflow-hidden whitespace-nowrap">
+            <span
+              className="block  text-ellipsis overflow-hidden whitespace-nowrap"
+              title={footballClub.name}
+            >
+              {footballClub.name}
+            </span>
           </div>
         </div>
         <div className="absolute right-0 pr-2">
