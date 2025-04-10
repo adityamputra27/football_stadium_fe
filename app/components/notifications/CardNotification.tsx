@@ -1,5 +1,5 @@
 import React from "react";
-import { FiEdit, FiTrash2 } from "react-icons/fi";
+import { FiTrash2 } from "react-icons/fi";
 import { Notification } from "~/types/notification";
 
 interface CardNotificationProps {
@@ -10,7 +10,7 @@ interface CardNotificationProps {
 }
 
 export default function CardNotification(props: CardNotificationProps) {
-  const { notification, key, handleEdit, handleDelete } = props;
+  const { notification, key, handleDelete } = props;
 
   return (
     <React.Fragment key={key}>
@@ -25,12 +25,12 @@ export default function CardNotification(props: CardNotificationProps) {
             </p>
           </div>
           <div className="flex gap-2 items-start">
-            <button
+            {/* <button
               onClick={() => handleEdit(notification)}
               className="inline-flex items-center px-2 py-1 text-sm font-medium text-white bg-orange-500 rounded-md hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-200"
             >
               <FiEdit />
-            </button>
+            </button> */}
             <button
               onClick={() => handleDelete(notification.id)}
               className="inline-flex items-center px-2 py-1 text-sm font-medium text-white bg-red-700 rounded-md hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300"
