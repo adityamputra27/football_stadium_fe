@@ -23,6 +23,7 @@ export default function Modal(props: ModalNotificationProps) {
     description: "",
     status: "success",
     send_push: true,
+    topic_category: undefined,
   });
   const [loading, setLoading] = useState(false);
 
@@ -71,6 +72,7 @@ export default function Modal(props: ModalNotificationProps) {
         description: selectedNotification?.description,
         status: "success",
         send_push: selectedNotification?.send_push ?? true,
+        topic_category: selectedNotification?.topic_category,
       });
     } else {
       setFormData({
@@ -79,6 +81,7 @@ export default function Modal(props: ModalNotificationProps) {
         description: "",
         status: "success",
         send_push: true,
+        topic_category: undefined,
       });
     }
   }, [selectedNotification, openModal, setOpenModal]);
@@ -142,6 +145,206 @@ export default function Modal(props: ModalNotificationProps) {
                   onChange={handleInputChange}
                   defaultChecked
                 />
+              </div>
+              <div className="col-span-2">
+                <label
+                  htmlFor="send_push"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Topic Category
+                </label>
+                <div className="grid grid-cols-6 gap-2">
+                  <div className="col-span-2">
+                    <input
+                      id="topic_category_8"
+                      type="radio"
+                      name="topic_category"
+                      value="topic_welcome"
+                      checked={formData.topic_category === "topic_welcome"}
+                      onChange={() =>
+                        setFormData({
+                          ...formData,
+                          topic_category: "topic_welcome",
+                        })
+                      }
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label
+                      htmlFor="topic_category_8"
+                      className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >
+                      Welcome
+                    </label>
+                  </div>
+                  <div className="col-span-2">
+                    <input
+                      id="topic_category_1"
+                      type="radio"
+                      name="topic_category"
+                      value="topic_football_stadium"
+                      checked={
+                        formData.topic_category === "topic_football_stadium"
+                      }
+                      onChange={() =>
+                        setFormData({
+                          ...formData,
+                          topic_category: "topic_football_stadium",
+                        })
+                      }
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label
+                      htmlFor="topic_category_1"
+                      className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >
+                      Football Stadium
+                    </label>
+                  </div>
+                  <div className="col-span-2">
+                    <input
+                      id="topic_category_2"
+                      type="radio"
+                      name="topic_category"
+                      value="topic_football_news"
+                      checked={
+                        formData.topic_category === "topic_football_news"
+                      }
+                      onChange={() =>
+                        setFormData({
+                          ...formData,
+                          topic_category: "topic_football_news",
+                        })
+                      }
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label
+                      htmlFor="topic_category_2"
+                      className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >
+                      Football News
+                    </label>
+                  </div>
+                  <div className="col-span-2">
+                    <input
+                      id="topic_category_3"
+                      type="radio"
+                      name="topic_category"
+                      value="topic_football_league"
+                      checked={
+                        formData.topic_category === "topic_football_league"
+                      }
+                      onChange={() =>
+                        setFormData({
+                          ...formData,
+                          topic_category: "topic_football_league",
+                        })
+                      }
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label
+                      htmlFor="topic_category_3"
+                      className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >
+                      Football League
+                    </label>
+                  </div>
+                  <div className="col-span-2">
+                    <input
+                      id="topic_category_4"
+                      type="radio"
+                      name="topic_category"
+                      value="topic_football_club"
+                      checked={
+                        formData.topic_category === "topic_football_club"
+                      }
+                      onChange={() =>
+                        setFormData({
+                          ...formData,
+                          topic_category: "topic_football_club",
+                        })
+                      }
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label
+                      htmlFor="topic_category_4"
+                      className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >
+                      Football Club
+                    </label>
+                  </div>
+                  <div className="col-span-2">
+                    <input
+                      id="topic_category_5"
+                      type="radio"
+                      name="topic_category"
+                      value="topic_football_match"
+                      checked={
+                        formData.topic_category === "topic_football_match"
+                      }
+                      onChange={() =>
+                        setFormData({
+                          ...formData,
+                          topic_category: "topic_football_match",
+                        })
+                      }
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label
+                      htmlFor="topic_category_5"
+                      className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >
+                      Football Match
+                    </label>
+                  </div>
+                  <div className="col-span-2">
+                    <input
+                      id="topic_category_6"
+                      type="radio"
+                      name="topic_category"
+                      value="topic_football_event"
+                      checked={
+                        formData.topic_category === "topic_football_event"
+                      }
+                      onChange={() =>
+                        setFormData({
+                          ...formData,
+                          topic_category: "topic_football_event",
+                        })
+                      }
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label
+                      htmlFor="topic_category_6"
+                      className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >
+                      Football Event
+                    </label>
+                  </div>
+                  <div className="col-span-2">
+                    <input
+                      id="topic_category_7"
+                      type="radio"
+                      name="topic_category"
+                      value="topic_football_player"
+                      checked={
+                        formData.topic_category === "topic_football_player"
+                      }
+                      onChange={() =>
+                        setFormData({
+                          ...formData,
+                          topic_category: "topic_football_player",
+                        })
+                      }
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label
+                      htmlFor="topic_category_7"
+                      className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >
+                      Football Player
+                    </label>
+                  </div>
+                </div>
               </div>
               <div className="col-span-2">
                 <label
