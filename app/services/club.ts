@@ -7,12 +7,20 @@ export const initiateFootballClub = async () => {
 };
 
 export const createFootballClub = async (payload: FormData) => {
-  const response = await api.post("/clubs", payload);
+  const response = await api.post("/clubs", payload, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
   return response.data;
 };
 
 export const updateFootballClub = async (id: number, payload: FormData) => {
-  const response = await api.post(`/clubs/${id}?_method=PATCH`, payload);
+  const response = await api.post(`/clubs/${id}?_method=PATCH`, payload, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
   return response.data;
 };
 

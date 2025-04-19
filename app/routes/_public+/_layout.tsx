@@ -1,7 +1,7 @@
 import { Outlet } from "@remix-run/react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FiBell, FiLogOut, FiUsers } from "react-icons/fi";
+import { FiBell, FiBookOpen, FiLogOut, FiUsers } from "react-icons/fi";
 import { MdOutlineStadium } from "react-icons/md";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
@@ -124,6 +124,14 @@ function Layout() {
                       </li>
                     </ul>
                   </div>
+                </li>
+                <li>
+                  <Link
+                    to="/football-news"
+                    className="flex items-center justify-center gap-1 py-2 px-3 text-sm text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  >
+                    <FiBookOpen /> Football News
+                  </Link>
                 </li>
                 <li>
                   <Link
