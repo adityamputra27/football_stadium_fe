@@ -16,17 +16,22 @@ export default function CardLeague(props: CardLeagueProps) {
 
   return (
     <React.Fragment key={key}>
-      <div className="cursor-pointer relative rounded-xl flex flex-col justify-between gap-0 w-full mb-3 p-3 bg-white border hover:border-[#588AE4] hover:border-1 border-gray-800 shadow-sm dark:bg-gray-900 dark:border-gray-700">
+      <div className="cursor-pointer relative rounded-xl flex flex-col justify-between gap-0 w-full mb-0 p-3 bg-white border hover:border-[#588AE4] hover:border-1 border-gray-800 shadow-sm dark:bg-gray-900 dark:border-gray-700">
         <div>
           <div className="flex justify-between items-start mb-1">
             <img
               src={footballLeague.logo_white}
-              className="mx-auto h-16 rounded-lg"
+              className="mx-auto h-16 rounded-lg object-cover px-2"
               alt=""
             />
           </div>
-          <div className="flex justify-center items-center text-center text-xs text-gray-300 pt-3 pb-0.5">
-            <span>{footballLeague.name}</span>
+          <div className="flex justify-center items-center text-center text-xs text-gray-300 pt-3 pb-0.5 overflow-hidden text-ellipsis whitespace-nowrap">
+            <span
+              className="block overflow-hidden text-ellipsis whitespace-nowrap"
+              title={footballLeague.name}
+            >
+              {footballLeague.name}
+            </span>
           </div>
         </div>
         <div className="absolute right-0 pr-2">

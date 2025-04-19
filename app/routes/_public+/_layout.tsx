@@ -14,7 +14,7 @@ function Layout() {
   return (
     <React.Fragment>
       <ToastContainer position="top-right" autoClose={2000} />
-      <header>
+      <header className="font-sans">
         <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
           <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <Link
@@ -162,7 +162,7 @@ function Layout() {
           </div>
         </nav>
       </header>
-      <main className="max-w-screen-xl flex flex-wrap items-center mx-auto p-4">
+      <main className="max-w-screen-xl font-sans flex flex-wrap items-center mx-auto p-4">
         <Outlet />
       </main>
     </React.Fragment>

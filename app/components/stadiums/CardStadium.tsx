@@ -1,6 +1,6 @@
 /* eslint-disable import/no-unresolved */
 import { Link } from "@remix-run/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FiEdit,
   FiImage,
@@ -22,24 +22,32 @@ export default function CardStadium(props: CardStadiumProps) {
   const { footballStadium, handleEdit, handleUpload, handleDelete } = props;
   const [dropdownOpen, isDropdownOpen] = useState(false);
 
+  useEffect(() => {}, [footballStadium]);
+
   return (
     <React.Fragment>
-      <div className="cursor-pointer rounded-xl w-full mb-3 p-3 max-h-52 overflow-hidden bg-white border hover:border-[#588AE4] hover:border-1 border-gray-800 shadow-sm dark:bg-gray-900 dark:border-gray-700">
+      <div className="cursor-pointer rounded-xl w-full mb-0 p-3 max-h-52 overflow-hidden bg-white border hover:border-[#588AE4] hover:border-1 border-gray-800 shadow-sm dark:bg-gray-900 dark:border-gray-700">
         <div className="flex justify-between items-start mb-3">
           <img
             src={
-              footballStadium.latest_file
+              footballStadium.latest_file &&
+              footballStadium.latest_file.trim() !== ""
                 ? footballStadium.latest_file
-                : "https://dpcpa.com/app/uploads/2015/01/thumbnail-default.jpg"
+                : "/thumbnail-default.jpg"
             }
-            className="h-32 rounded-lg"
+            className="h-32 rounded-lg object-cover"
             alt=""
           />
         </div>
 
         <div className="flex gap-2 justify-between items-center">
-          <div className="flex justify-center items-center text-center text-sm text-gray-300 pt-0 pb-2 overflow-hidden text-ellipsis whitespace-nowrap">
-            <span>{footballStadium.name}</span>
+          <div className="flex justify-center items-center mx-auto text-ellipsis overflow-hidden whitespace-nowrap text-center text-sm text-gray-300 pt-0 pb-2">
+            <span
+              className="block overflow-hidden text-ellipsis whitespace-nowrap"
+              title={footballStadium.name}
+            >
+              {footballStadium.name}
+            </span>
           </div>
           <button
             id="dropdownNavbarLink"
