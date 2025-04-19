@@ -1,58 +1,37 @@
 /* eslint-disable import/no-unresolved */
-import { LoaderFunction, MetaFunction } from "@remix-run/node";
-import { redirect } from "@remix-run/react";
-// import { Link } from "@remix-run/react";
+import { MetaFunction } from "@remix-run/node";
+import { Link } from "@remix-run/react";
 import React, { useCallback, useEffect, useState } from "react";
 import { FiFilter, FiPlusCircle } from "react-icons/fi";
 import { toast } from "react-toastify";
 import ConfirmModal from "~/components/ConfirmModal";
-import CardLeague from "~/components/football-leagues/CardLeague";
-import CardLeagueLoading from "~/components/football-leagues/CardLeagueLoading";
-import Modal from "~/components/football-leagues/Modal";
-import { currentUser } from "~/services/auth";
-import {
-  deleteFootballLeague,
-  initiateFootballLeagues,
-} from "~/services/league";
-import { FootballLeague } from "~/types/league";
-import { authCookie } from "~/utils/session";
-
-export const loader: LoaderFunction = async ({ request }) => {
-  const token = await authCookie.parse(request.headers.get("Cookie"));
-
-  if (!token) {
-    return redirect("/login");
-  }
-
-  try {
-    const user = await currentUser(token);
-    return Response.json({ user });
-  } catch (error) {
-    return redirect("/login");
-  }
-};
+import CardFootballNews from "~/components/football-news/CardFootballNews";
+import CardFootballNewsLoading from "~/components/football-news/CardFootballNewsLoading";
+import Modal from "~/components/football-news/Modal";
+import { deleteNews, initiateNews } from "~/services/news";
+import { FootballNews } from "~/types/news";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Football Stadium App | Notification Menu" },
-    { name: "description", content: "Notification Menu" },
+    { title: "Football Stadium App | Football News Menu" },
+    { name: "description", content: "Football News Menu" },
   ];
 };
 
 export default function Index() {
-  const [footballLeagues, setFootballLeagues] = useState<FootballLeague[]>([]);
+  const [footballNews, setFootballNews] = useState<FootballNews[]>([]);
   const [loading, setLoading] = useState(true);
   const [openModal, setOpenModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [selectedId, setSelectedId] = useState<number>(0);
-  const [selectedFootballLeague, setSelectedFootballLeague] = useState<
-    FootballLeague | undefined
+  const [selectedFootballNews, setSelectedFootballNews] = useState<
+    FootballNews | undefined
   >();
 
   const refetch = async () => {
     try {
-      const response = await initiateFootballLeagues();
-      setFootballLeagues(response.data.data);
+      const response = await initiateNews();
+      setFootballNews(response.data.data);
     } catch (error) {
       toast.error("Server error");
     } finally {
@@ -66,8 +45,8 @@ export default function Index() {
     refetch();
   }, []);
 
-  const handleEdit = useCallback(async (footballLeague: FootballLeague) => {
-    setSelectedFootballLeague(footballLeague);
+  const handleEdit = useCallback(async (news: FootballNews) => {
+    setSelectedFootballNews(news);
     setOpenModal(true);
   }, []);
 
@@ -79,11 +58,10 @@ export default function Index() {
   const onConfirmDelete = useCallback(async () => {
     try {
       setLoading(true);
-
-      await deleteFootballLeague(selectedId);
-      toast.success("Successfully deleted football league! 🎉");
+      await deleteNews(selectedId);
+      toast.success("Successfully deleted football news! 🎉");
     } catch (error) {
-      toast.error("Failed to delete football league ❌");
+      toast.error("Failed to delete football news ❌");
     } finally {
       setLoading(false);
       setOpenDeleteModal(false);
@@ -94,10 +72,10 @@ export default function Index() {
   return (
     <React.Fragment>
       <div className="mb-2">
-        <h3 className="text-xl font-bold">Football Leagues</h3>
+        <h3 className="text-xl font-bold">Football News</h3>
         <p className="text-xs text-gray-400 mt-1">
-          Total : {footballLeagues.length} data, Count filtered :{" "}
-          {footballLeagues.length} data, Page 1
+          Total : {footballNews.length} data, Count filtered :{" "}
+          {footballNews.length} data, Page 1
         </p>
       </div>
       <div className="w-full grid grid-cols-2 mt-2 mb-4">
@@ -120,7 +98,8 @@ export default function Index() {
             type="button"
             onClick={() => {
               setOpenModal(true);
-              setSelectedFootballLeague(undefined);
+              setSelectedFootballNews(undefined);
+              setSelectedId(0);
             }}
             className="flex items-center gap-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
           >
@@ -128,31 +107,25 @@ export default function Index() {
           </button>
         </div>
       </div>
-      <div className="w-full">
-        {loading ? (
-          <div className="grid grid-cols-7 gap-4">
-            {Array.from({ length: 7 * 3 }).map((_, index) => (
-              <CardLeagueLoading key={index} />
-            ))}
-          </div>
-        ) : footballLeagues.length > 0 ? (
-          <div className="grid grid-cols-7 gap-4">
-            {footballLeagues.map((footballLeague: FootballLeague) => (
-              <CardLeague
-                handleDelete={handleDelete}
-                handleEdit={handleEdit}
-                key={footballLeague.id}
-                footballLeague={footballLeague}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="w-full py-8">
-            <p className="text-gray-500 text-center">No data</p>
-          </div>
-        )}
-      </div>
-      {/* {footballLeagues.length > 0 && (
+      {loading ? (
+        Array.from({ length: 3 }).map((_, index) => (
+          <CardFootballNewsLoading key={index} />
+        ))
+      ) : footballNews.length > 0 ? (
+        footballNews.map((news: FootballNews) => (
+          <CardFootballNews
+            handleDelete={handleDelete}
+            handleEdit={handleEdit}
+            key={news.id}
+            news={news}
+          />
+        ))
+      ) : (
+        <div className="w-full py-8">
+          <p className="text-gray-500 text-center">No data</p>
+        </div>
+      )}
+      {footballNews.length > 0 && (
         <nav aria-label="Page navigation example" className="ms-auto mt-1">
           <ul className="inline-flex -space-x-px text-sm">
             <li>
@@ -194,12 +167,12 @@ export default function Index() {
             </li>
           </ul>
         </nav>
-      )} */}
+      )}
       <Modal
         openModal={openModal}
         setOpenModal={setOpenModal}
         refetch={refetch}
-        selectedFootballLeague={selectedFootballLeague}
+        selectedFootballNews={selectedFootballNews}
       />
       <ConfirmModal
         openModal={openDeleteModal}
@@ -207,7 +180,7 @@ export default function Index() {
         onConfirm={onConfirmDelete}
         id={selectedId}
         loading={loading}
-        customMessage="Are you sure you want to delete this football league?"
+        customMessage="Are you sure you want to delete this notification?"
       />
     </React.Fragment>
   );

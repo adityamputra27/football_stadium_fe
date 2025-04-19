@@ -7,12 +7,20 @@ export const initiateFootballLeagues = async () => {
 };
 
 export const createFootballLeague = async (payload: FormData) => {
-  const response = await api.post("/leagues", payload);
+  const response = await api.post("/leagues", payload, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
   return response.data;
 };
 
 export const updateFootballLeague = async (id: number, payload: FormData) => {
-  const response = await api.post(`/leagues/${id}?_method=PATCH`, payload);
+  const response = await api.post(`/leagues/${id}?_method=PATCH`, payload, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
   return response.data;
 };
 

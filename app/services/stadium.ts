@@ -12,12 +12,20 @@ export const singleFootballStadium = async (id: number) => {
 };
 
 export const createFootballStadium = async (payload: FormData) => {
-  const response = await api.post("/stadiums", payload);
+  const response = await api.post("/stadiums", payload, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
   return response.data;
 };
 
 export const updateFootballStadium = async (id: number, payload: FormData) => {
-  const response = await api.post(`/stadiums/${id}?_method=PATCH`, payload);
+  const response = await api.post(`/stadiums/${id}?_method=PATCH`, payload, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
   return response.data;
 };
 
@@ -39,7 +47,12 @@ export const createFootballStadiumFile = async (
 ) => {
   const response = await api.post(
     `/stadiums/${footballStadiumId}/files/upload`,
-    payload
+    payload,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
   );
   return response.data;
 };
